@@ -3,7 +3,7 @@ import { useTrail, animated } from '@react-spring/web';
 
 function TransactionTable({ data }) {
   if (!data || data.length === 0) {
-    return <p style={{ fontSize: '0.9rem', opacity: 0.8 }}>No results found.</p>;
+    return <div className="table-empty">No results found.</div>;
   }
 
   const columns = [
@@ -35,9 +35,9 @@ function TransactionTable({ data }) {
   ];
 
   const trail = useTrail(data.length, {
-    from: { opacity: 0, transform: 'translateY(12px)' },
+    from: { opacity: 0, transform: 'translateY(10px)' },
     to: { opacity: 1, transform: 'translateY(0)' },
-    config: { mass: 1, tension: 220, friction: 20 },
+    config: { tension: 220, friction: 20 },
   });
 
   return (
