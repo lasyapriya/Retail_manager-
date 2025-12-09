@@ -83,7 +83,7 @@ function App() {
             <TransactionTable data={transactions} />
           </div>
 
-          <Pagination page={page} setPage={setPage} pages={pages} total={total} />
+          <PaginationControls page={page} setPage={setPage} pages={pages} total={total} />
         </div>
       </div>
     </animated.div>
