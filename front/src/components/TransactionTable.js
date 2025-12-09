@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTrail, animated } from '@react-spring/web';
 
 function TransactionTable({ data }) {
   if (data.length === 0) {
@@ -12,6 +13,13 @@ function TransactionTable({ data }) {
     'Date', 'Payment Method', 'Order Status', 'Delivery Type', 'Store ID', 'Store Location', 'Salesperson ID', 'Employee Name'
   ];
 
+  // Trail spring for row popping/stagger
+  const trail = useTrail(data.length, {
+    from: { opacity: 0, transform: 'translateY(20px)' },
+    to: { opacity: 1, transform: 'translateY(0)' },
+    config: { mass: 1, tension: 220, friction: 20 }, // Bouncy pop
+  });
+
   return (
     <table>
       <thead>
@@ -20,10 +28,10 @@ function TransactionTable({ data }) {
         </tr>
       </thead>
       <tbody>
-        {data.map((row, index) => (
-          <tr key={index}>
-            {columns.map((col) => <td key={col}>{row[col] || ''}</td>)}
-          </tr>
+        {trail.map((style, index) => (
+          <animated.tr key={index} style={style}>
+            {columns.map((col) => <td key={col}>{data[index][col] || ''}</td>)}
+          </animated.tr>
         ))}
       </tbody>
     </table>
