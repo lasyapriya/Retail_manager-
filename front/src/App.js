@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useSpring, animated } from '@react-spring/web';
 import './App.css';
 import SearchBar from './components/SearchBar';
 import FilterPanel from './components/FilterPanel';
 import SortingDropdown from './components/SortingDropdown';
 import TransactionTable from './components/TransactionTable';
-import PaginationControls from './components/PaginationControls';
+import Pagination from './components/Pagination';
 
 const API = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
@@ -48,18 +49,26 @@ function App() {
     }).catch(() => {});
   }, [search, filters, sort, page]);
 
+  // Spring animation for overall layout pop/transition on data change
+  const springProps = useSpring({
+    from: { opacity: 0, transform: 'scale(0.98)' },
+    to: { opacity: 1, transform: 'scale(1)' },
+    reset: true, // Reset on every data change
+    config: { mass: 1, tension: 280, friction: 20 }, // Bouncy physics
+  });
+
   return (
-    <div className="app">
+    <animated.div style={springProps} className="app">
       <SearchBar value={search} onChange={setSearch} />
       <div className="main">
         <FilterPanel options={options} filters={filters} setFilters={setFilters} />
         <div className="content">
           <SortingDropdown value={sort} onChange={setSort} />
           <TransactionTable data={transactions} />
-          <PaginationControls page={page} setPage={setPage} pages={pages} total={total} />
+          <Pagination page={page} setPage={setPage} pages={pages} total={total} />
         </div>
       </div>
-    </div>
+    </animated.div>
   );
 }
 
