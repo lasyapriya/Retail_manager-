@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 *,
 *::before,
@@ -8,24 +8,24 @@
 
 body {
   margin: 0;
-  font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   background:
-    radial-gradient(circle at top left, #3b82f6 0, transparent 45%),
-    radial-gradient(circle at bottom right, #8b5cf6 0, transparent 45%),
-    linear-gradient(135deg, #020617, #020617 40%, #000 100%);
-  color: #e5e7ff;
+    radial-gradient(circle at top left, #1e3a8a 0, transparent 55%),
+    radial-gradient(circle at bottom right, #6d28d9 0, transparent 55%),
+    #020617;
+  color: #e5e7eb;
 }
 
-/* ===== App layout ===== */
+/* ===== Root layout ===== */
 
 .app {
-  max-width: 1440px;
+  max-width: 1400px;
   margin: 0 auto;
   min-height: 100vh;
   padding: 24px 24px 32px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
 /* ===== Header ===== */
@@ -37,25 +37,23 @@ body {
 }
 
 .app-title {
-  font-size: clamp(1.8rem, 2vw + 1rem, 2.5rem);
+  margin: 0;
+  font-size: clamp(1.9rem, 2vw + 1rem, 2.6rem);
+  font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  font-weight: 600;
-  background: linear-gradient(120deg, #facc15, #f97316, #22c55e, #38bdf8);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  color: transparent;
-  animation: titleGlow 10s ease-in-out infinite alternate;
+  color: #f9fafb;
 }
 
 .app-subtitle {
+  margin: 0;
   font-size: 0.9rem;
-  color: rgba(226, 232, 255, 0.78);
+  color: rgba(209, 213, 219, 0.85);
 }
 
 /* ===== Main two-column layout ===== */
 
-.main-layout {
+.main {
   display: flex;
   gap: 20px;
   align-items: flex-start;
@@ -65,66 +63,45 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-}
-
-@media (max-width: 960px) {
-  .main-layout {
-    flex-direction: column;
-  }
-
-  .filter-panel {
-    position: static;
-    max-height: none;
-  }
+  gap: 12px;
 }
 
 /* ===== Search bar ===== */
 
-.search-wrapper {
-  width: 100%;
-}
-
 .search-bar {
+  margin-top: 4px;
+  margin-bottom: 12px;
   width: 100%;
   border-radius: 999px;
   padding: 2px;
-  background:
-    radial-gradient(circle at top left, rgba(56, 189, 248, 0.15), transparent 50%),
-    radial-gradient(circle at bottom right, rgba(192, 132, 252, 0.15), transparent 50%),
-    rgba(15, 23, 42, 0.95);
-  border: 1px solid rgba(148, 163, 255, 0.55);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 255, 0.6);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
 }
 
-.search-input {
+.search-bar input {
   width: 100%;
   border: none;
   outline: none;
   background: transparent;
-  color: #e5e7ff;
   padding: 10px 16px;
   font-size: 0.92rem;
+  color: #e5e7eb;
 }
 
-.search-input::placeholder {
-  color: rgba(148, 163, 255, 0.7);
+.search-bar input::placeholder {
+  color: rgba(148, 163, 255, 0.8);
 }
 
-/* ===== Filter panel (left) ===== */
+/* ===== Filter panel ===== */
 
 .filter-panel {
-  width: 280px;
+  width: 260px;
   padding: 16px 18px;
-  border-radius: 20px;
-  background: linear-gradient(
-      145deg,
-      rgba(15, 23, 42, 0.98),
-      rgba(15, 23, 42, 0.96),
-      rgba(30, 64, 175, 0.9)
-    );
-  border: 1px solid rgba(94, 234, 212, 0.45);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.96);
+  border: 1px solid rgba(55, 65, 81, 0.9);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8);
   position: sticky;
   top: 24px;
   max-height: calc(100vh - 80px);
@@ -132,52 +109,51 @@ body {
 }
 
 .filter-panel h3 {
-  margin: 0 0 12px;
-  font-size: 0.9rem;
-  letter-spacing: 0.12em;
+  margin: 0 0 10px;
+  font-size: 0.85rem;
   text-transform: uppercase;
-  color: #7dd3fc;
+  letter-spacing: 0.14em;
+  color: rgba(156, 163, 175, 0.95);
 }
 
-.filter-group {
-  margin-bottom: 14px;
+.filter-panel div {
+  margin-bottom: 12px;
   display: flex;
   flex-direction: column;
   gap: 6px;
-  font-size: 0.82rem;
 }
 
 .filter-panel label {
-  color: #e5e7ff;
+  font-size: 0.8rem;
   font-weight: 500;
+  color: #e5e7eb;
 }
 
 .filter-panel select,
 .filter-panel input {
   width: 100%;
-  background: rgba(15, 23, 42, 0.96);
+  background: #020617;
   border-radius: 10px;
-  border: 1px solid rgba(148, 163, 255, 0.45);
+  border: 1px solid rgba(55, 65, 81, 0.9);
   padding: 6px 10px;
   font-size: 0.8rem;
-  color: #e5e7ff;
+  color: #e5e7eb;
   outline: none;
   transition:
-    border-color 0.18s ease,
-    box-shadow 0.18s ease,
-    background 0.18s ease,
-    transform 0.12s ease;
+    border-color 0.16s ease,
+    box-shadow 0.16s ease,
+    background 0.16s ease,
+    transform 0.1s ease;
 }
 
 .filter-panel select:focus,
 .filter-panel input:focus {
-  border-color: #facc15;
-  box-shadow: 0 0 0 1px rgba(250, 204, 21, 0.5);
-  background: rgba(15, 23, 42, 1);
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.45);
   transform: translateY(-1px);
 }
 
-/* ===== Sorting dropdown ===== */
+/* ===== Sorting dropdown / toolbar ===== */
 
 .toolbar-row {
   display: flex;
@@ -191,103 +167,88 @@ body {
   padding: 8px 12px;
   border-radius: 999px;
   background: rgba(15, 23, 42, 0.96);
-  border: 1px solid rgba(148, 163, 255, 0.6);
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(55, 65, 81, 0.95);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7);
   font-size: 0.85rem;
 }
 
 .sorting-dropdown label {
-  color: rgba(226, 232, 255, 0.8);
+  color: rgba(209, 213, 219, 0.9);
 }
 
 .sorting-dropdown select {
-  border-radius: 999px;
   border: none;
   outline: none;
+  border-radius: 999px;
   padding: 6px 10px;
   font-size: 0.8rem;
-  background: radial-gradient(circle at top, #0f172a, #020617);
-  color: #e5e7ff;
+  background: #020617;
+  color: #e5e7eb;
 }
 
-/* ===== Table card (right main) ===== */
+/* ===== Table wrapper ===== */
 
-.table-card {
+.table-wrapper {
   flex: 1;
-  border-radius: 20px;
-  padding: 14px 14px 10px;
-  background:
-    radial-gradient(circle at top left, rgba(248, 250, 252, 0.1), transparent 55%),
-    radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.16), transparent 55%),
-    rgba(15, 23, 42, 0.98);
-  border: 1px solid rgba(148, 163, 255, 0.7);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9);
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.97);
+  border: 1px solid rgba(55, 65, 81, 0.95);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.85);
+  padding: 10px 10px 8px;
   overflow: auto;
 }
 
-/* ===== Transaction table (fixes zoom issue too) ===== */
+/* ===== Transaction table ===== */
 
-.transaction-table {
+table {
   width: 100%;
-  min-width: 1200px;
+  min-width: 1200px; /* so columns don’t crush */
   border-collapse: collapse;
   table-layout: fixed;
 }
 
-.transaction-table th,
-.transaction-table td {
-  border-right: 1px solid rgba(51, 65, 85, 0.9);
+th,
+td {
+  border-right: 1px solid rgba(31, 41, 55, 0.9);
 }
 
-/* header */
-.transaction-table thead th {
+thead th {
   position: sticky;
   top: 0;
-  z-index: 2;
-  background: linear-gradient(135deg, #111827, #1d4ed8);
-  color: #fef3c7;
+  z-index: 1;
+  background: linear-gradient(135deg, #030712, #1e3a8a);
+  color: #f9fafb;
   font-weight: 500;
   font-size: 0.78rem;
   padding: 8px 10px;
   white-space: nowrap;
 }
 
-/* body cells — explicit background so even when you zoom/scroll,
-   right-most columns NEVER become white */
-.transaction-table tbody td {
+/* Explicit backgrounds so zooming / scrolling never shows white boxes */
+tbody td {
   font-size: 0.78rem;
   padding: 7px 10px;
-  color: #e5e7ff;
-  background-color: rgba(15, 23, 42, 0.97);
+  color: #e5e7eb;
+  background-color: #020617;
 }
 
-.transaction-table tbody tr:nth-child(even) td {
-  background-color: rgba(17, 24, 39, 0.96);
+tbody tr:nth-child(even) td {
+  background-color: #020617ee;
 }
 
-.transaction-table tbody tr:hover td {
-  background-image: linear-gradient(
-    90deg,
-    rgba(56, 189, 248, 0.18),
-    rgba(192, 132, 252, 0.18)
-  );
-  box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.4);
+tbody tr:hover td {
+  background-color: #0b1120;
 }
 
 /* ===== Pagination ===== */
 
 .pagination {
-  margin-top: 8px;
+  margin-top: 6px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
   font-size: 0.85rem;
-  padding: 4px 2px;
-}
-
-.pagination span {
-  color: rgba(226, 232, 255, 0.85);
+  color: rgba(209, 213, 219, 0.9);
 }
 
 .pagination button {
@@ -297,56 +258,60 @@ body {
   cursor: pointer;
   font-size: 0.85rem;
   font-weight: 500;
-  background-image: linear-gradient(135deg, #22c55e, #a3e635);
-  color: #022c22;
-  box-shadow: 0 12px 26px rgba(21, 128, 61, 0.55);
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  color: #052e16;
+  box-shadow: 0 10px 24px rgba(22, 163, 74, 0.6);
   transition:
-    transform 0.16s ease,
-    box-shadow 0.16s ease,
-    filter 0.16s ease,
-    opacity 0.16s ease;
+    transform 0.14s ease,
+    box-shadow 0.14s ease,
+    filter 0.14s ease,
+    opacity 0.14s ease;
 }
 
 .pagination button:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 16px 34px rgba(21, 128, 61, 0.7);
+  box-shadow: 0 14px 30px rgba(22, 163, 74, 0.7);
   filter: brightness(1.03);
 }
 
 .pagination button:disabled {
-  opacity: 0.4;
+  opacity: 0.45;
   cursor: default;
   box-shadow: none;
 }
 
-/* ===== Scrollbar styling (for table + filters) ===== */
+/* ===== Scrollbars for filter + table ===== */
 
-.table-card::-webkit-scrollbar,
-.filter-panel::-webkit-scrollbar {
-  height: 8px;
-  width: 8px;
+.filter-panel::-webkit-scrollbar,
+.table-wrapper::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
 }
 
-.table-card::-webkit-scrollbar-track,
-.filter-panel::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.85);
+.filter-panel::-webkit-scrollbar-track,
+.table-wrapper::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.9);
 }
 
-.table-card::-webkit-scrollbar-thumb,
-.filter-panel::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #38bdf8, #a855f7);
+.filter-panel::-webkit-scrollbar-thumb,
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(75, 85, 99, 0.9);
   border-radius: 999px;
 }
 
-/* ===== Animations ===== */
+/* ===== Responsive ===== */
 
-@keyframes titleGlow {
-  0% {
-    background-position: 0% 50%;
-    text-shadow: 0 0 12px rgba(250, 250, 210, 0.4);
+@media (max-width: 960px) {
+  .main {
+    flex-direction: column;
   }
-  100% {
-    background-position: 100% 50%;
-    text-shadow: 0 0 26px rgba(250, 250, 210, 0.7);
+
+  .filter-panel {
+    position: static;
+    max-height: none;
+  }
+
+  table {
+    min-width: 900px;
   }
 }
