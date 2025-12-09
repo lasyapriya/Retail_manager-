@@ -6,7 +6,7 @@ import SearchBar from './components/SearchBar';
 import FilterPanel from './components/FilterPanel';
 import SortingDropdown from './components/SortingDropdown';
 import TransactionTable from './components/TransactionTable';
-import Pagination from './components/Pagination';
+import PaginationControls from './components/PaginationControls';
 
 const API = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
