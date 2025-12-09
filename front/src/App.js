@@ -6,7 +6,7 @@ import SearchBar from './components/SearchBar';
 import FilterPanel from './components/FilterPanel';
 import SortingDropdown from './components/SortingDropdown';
 import TransactionTable from './components/TransactionTable';
-import PaginationControls from './components/PaginationControls'; // or PaginationControls – just keep the import & filename in sync
+import Pagination from './components/Pagination';
 
 const API = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
@@ -30,10 +30,15 @@ function App() {
   });
   const [sort, setSort] = useState('');
 
+  // load filter options
   useEffect(() => {
-    axios.get(`${API}/options`).then(res => setOptions(res.data));
+    axios
+      .get(`${API}/options`)
+      .then((res) => setOptions(res.data))
+      .catch((err) => console.error('Error loading options', err));
   }, []);
 
+  // load table data
   useEffect(() => {
     axios
       .get(`${API}/transactions`, {
@@ -44,48 +49,53 @@ function App() {
           page,
         },
       })
-      .then(res => {
+      .then((res) => {
         setTransactions(res.data.data);
         setTotal(res.data.total);
         setPages(res.data.pages);
       })
-      .catch(() => {});
+      .catch((err) => console.error('Error loading transactions', err));
   }, [search, filters, sort, page]);
 
-  // Only translate / blur (no scale) so zoom + sticky header work nicely
   const springProps = useSpring({
-    from: { opacity: 0, transform: 'translateY(16px)', filter: 'blur(10px)' },
-    to: { opacity: 1, transform: 'translateY(0px)', filter: 'blur(0px)' },
+    from: { opacity: 0, transform: 'translateY(12px)' },
+    to: { opacity: 1, transform: 'translateY(0)' },
     reset: true,
-    config: { mass: 1, tension: 260, friction: 22 },
+    config: { tension: 250, friction: 22 },
   });
 
   return (
-    <animated.div style={springProps} className="app">
+    <animated.div className="app" style={springProps}>
       <header className="app-header">
-        <div className="app-title">TruEstate Retail Sales</div>
+        <h1 className="app-title">TruEstate Retail Sales</h1>
         <p className="app-subtitle">
-          Explore transactions with royal clarity – search, filter and sort through your retail universe.
+          A clear, interactive view of your retail transactions – filter, sort and explore in real time.
         </p>
       </header>
 
       <SearchBar value={search} onChange={setSearch} />
 
-      <div className="main-layout">
-        <FilterPanel options={options} filters={filters} setFilters={setFilters} />
+      <main className="layout">
+        {/* Left – wide, relaxed filters */}
+        <aside className="sidebar">
+          <FilterPanel options={options} filters={filters} setFilters={setFilters} />
+        </aside>
 
-        <div className="content">
+        {/* Right – main workspace */}
+        <section className="workspace">
           <div className="toolbar-row">
             <SortingDropdown value={sort} onChange={setSort} />
           </div>
 
-          <div className="table-card">
+          <div className="panel panel-table">
             <TransactionTable data={transactions} />
           </div>
 
-          <PaginationControls page={page} setPage={setPage} pages={pages} total={total} />
-        </div>
-      </div>
+          <div className="panel panel-footer">
+            <Pagination page={page} setPage={setPage} pages={pages} total={total} />
+          </div>
+        </section>
+      </main>
     </animated.div>
   );
 }
