@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const axios = require('axios');
 const fs = require('fs');
 const csv = require('csv-parser');
 
@@ -9,11 +10,30 @@ app.use(express.json());
 
 let data = [];
 
-// Load CSV
-fs.createReadStream('data/truestate_assignment_dataset.csv')
-  .pipe(csv())
-  .on('data', (row) => data.push(row))
-  .on('end', () => console.log('CSV loaded:', data.length, 'records'));
+// Fetch and load CSV from Google Drive URL (publicly accessible)
+const csvUrl = 'https://drive.google.com/uc?export=download&id=1tzbyuxBmrBwMSXbL22r33FUMtO0V_lxb';  // Use the file ID from the assignment link
+
+async function loadData() {
+  try {
+    const response = await axios.get(csvUrl, { responseType: 'text' });
+    const records = parse(response.data, { columns: true, skip_empty_lines: true });
+    data = records;
+    console.log('CSV loaded from URL:', data.length, 'records');
+  } catch (error) {
+    console.error('Failed to load CSV:', error.message);
+    // Fallback: Load from local if available (for local dev)
+    const fs = require('fs');
+    if (fs.existsSync('data/truestate_assignment_dataset.csv')) {
+      fs.createReadStream('data/truestate_assignment_dataset.csv')
+        .pipe(csv())
+        .on('data', (row) => data.push(row))
+        .on('end', () => console.log('CSV loaded locally:', data.length, 'records'));
+    }
+  }
+}
+
+// Call on startup
+loadData();
 
 // Get filter options
 app.get('/api/options', (req, res) => {
