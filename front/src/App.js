@@ -6,7 +6,7 @@ import SearchBar from './components/SearchBar';
 import FilterPanel from './components/FilterPanel';
 import SortingDropdown from './components/SortingDropdown';
 import TransactionTable from './components/TransactionTable';
-import PaginationControl from './components/PaginationControl';
+import PaginationControls from './components/PaginationControls';
 
 const API = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
@@ -92,7 +92,7 @@ function App() {
           </div>
 
           <div className="panel panel-footer">
-            <PaginationControl page={page} setPage={setPage} pages={pages} total={total} />
+            <PaginationControls page={page} setPage={setPage} pages={pages} total={total} />
           </div>
         </section>
       </main>
