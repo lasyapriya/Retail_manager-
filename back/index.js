@@ -3,6 +3,7 @@ const cors = require('cors');
 const axios = require('axios');
 const fs = require('fs');
 const csv = require('csv-parser');
+const { parse } = require('csv-parse');
 
 const app = express();
 app.use(cors());
@@ -15,20 +16,17 @@ const csvUrl = 'https://drive.google.com/uc?export=download&id=1tzbyuxBmrBwMSXbL
 
 async function loadData() {
   try {
-    const response = await axios.get(csvUrl, { responseType: 'text' });
-    const records = parse(response.data, { columns: true, skip_empty_lines: true });
-    data = records;
-    console.log('CSV loaded from URL:', data.length, 'records');
+    const response = await axios.get(csvUrl, { responseType: 'stream' });
+    const records = [];
+    response.data
+      .pipe(csv())
+      .on('data', (row) => records.push(row))
+      .on('end', () => {
+        data = records;
+        console.log('CSV loaded from URL:', data.length, 'records');
+      });
   } catch (error) {
-    console.error('Failed to load CSV:', error.message);
-    // Fallback: Load from local if available (for local dev)
-    const fs = require('fs');
-    if (fs.existsSync('data/truestate_assignment_dataset.csv')) {
-      fs.createReadStream('data/truestate_assignment_dataset.csv')
-        .pipe(csv())
-        .on('data', (row) => data.push(row))
-        .on('end', () => console.log('CSV loaded locally:', data.length, 'records'));
-    }
+    console.error('Failed to load CSV from URL:', error.message);
   }
 }
 
