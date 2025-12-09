@@ -1,6 +1,8 @@
 .app {
   font-family: Arial, sans-serif;
   padding: 20px;
+  background-color: #4169E1; /* Royal blue background */
+  color: white;
 }
 
 .main {
@@ -10,7 +12,8 @@
 .filter-panel {
   width: 250px;
   padding: 10px;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid #50C878; /* Emerald green border */
+  background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent for depth */
 }
 
 .filter-panel div {
@@ -21,6 +24,13 @@
 .filter-panel input {
   width: 100%;
   margin-top: 5px;
+  background-color: #4169E1; /* Royal blue inputs */
+  border: 1px solid #50C878; /* Emerald green borders */
+  color: white;
+}
+
+.filter-panel label {
+  color: #FFD700; /* Gold labels */
 }
 
 .content {
@@ -34,13 +44,20 @@ table {
 }
 
 th, td {
-  border: 1px solid #ddd;
+  border: 1px solid #50C878; /* Emerald green borders */
   padding: 8px;
   text-align: left;
+  font-size: 0.9rem; /* Smaller font */
+  color: white;
 }
 
 th {
-  background-color: #f2f2f2;
+  background-color: #4169E1; /* Royal blue headers */
+  color: #FFD700; /* Gold text */
+}
+
+tr:hover {
+  background-color: rgba(80, 200, 120, 0.2); /* Emerald green hover */
 }
 
 .pagination {
@@ -52,4 +69,19 @@ th {
 
 .pagination button {
   margin: 0 10px;
+  background-color: #50C878; /* Emerald green buttons */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Base for animations */
+}
+
+.pagination button:hover {
+  background-color: #FFD700; /* Gold on hover */
+}
+
+/* For spring animations (smooth transitions) */
+.animated {
+  transition: all 0.5s ease; /* Base CSS support for springs */
 }
