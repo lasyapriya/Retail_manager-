@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSpring, animated } from '@react-spring/web';
 
 function FilterPanel({ options, filters, setFilters }) {
   const handleMultiChange = (e, key) => {
@@ -8,8 +9,16 @@ function FilterPanel({ options, filters, setFilters }) {
     setFilters({ ...filters, [key]: selected });
   };
 
+  // Spring for filter bounce on change
+  const springProps = useSpring({
+    transform: 'scale(1)',
+    from: { transform: 'scale(0.95)' },
+    reset: true,
+    config: { tension: 400, friction: 10 },
+  });
+
   return (
-    <div className="filter-panel">
+    <animated.div className="filter-panel" style={springProps}>
       <h3>Filters</h3>
       <div>
         <label>Customer Region</label>
@@ -69,7 +78,7 @@ function FilterPanel({ options, filters, setFilters }) {
           onChange={(e) => setFilters({ ...filters, dateEnd: e.target.value })}
         />
       </div>
-    </div>
+    </animated.div>
   );
 }
 
