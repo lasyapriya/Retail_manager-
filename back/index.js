@@ -10,7 +10,7 @@ app.use(express.json());
 let data = [];
 
 // Google Drive direct download link
-const csvUrl = 'https://truestate-dataset.onrender.com/dataset.csv';
+const csvUrl = 'https://drive.google.com/uc?export=download&id=1tzbyuxBmrBwMSXbL22r33FUMtO0V_lxb';
 async function loadData() {
   console.log('Starting to load CSV from Google Drive...');
   try {
