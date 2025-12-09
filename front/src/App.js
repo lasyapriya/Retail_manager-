@@ -65,7 +65,7 @@ function App() {
         <div className="content">
           <SortingDropdown value={sort} onChange={setSort} />
           <TransactionTable data={transactions} />
-          <Pagination page={page} setPage={setPage} pages={pages} total={total} />
+          <PaginationControls page={page} setPage={setPage} pages={pages} total={total} />
         </div>
       </div>
     </animated.div>
