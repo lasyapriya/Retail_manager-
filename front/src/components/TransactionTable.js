@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTrail, animated } from '@react-spring/web';
 
 function TransactionTable({ data }) {
   if (!data || data.length === 0) {
@@ -34,12 +33,6 @@ function TransactionTable({ data }) {
     'Employee Name',
   ];
 
-  const trail = useTrail(data.length, {
-    from: { opacity: 0, transform: 'translateY(10px)' },
-    to: { opacity: 1, transform: 'translateY(0)' },
-    config: { tension: 220, friction: 20 },
-  });
-
   return (
     <table className="transaction-table">
       <thead>
@@ -50,12 +43,12 @@ function TransactionTable({ data }) {
         </tr>
       </thead>
       <tbody>
-        {trail.map((style, index) => (
-          <animated.tr key={index} style={style}>
+        {data.map((row, idx) => (
+          <tr key={idx}>
             {columns.map((col) => (
-              <td key={col}>{data[index][col] ?? ''}</td>
+              <td key={col}>{row[col] ?? ''}</td>
             ))}
-          </animated.tr>
+          </tr>
         ))}
       </tbody>
     </table>
