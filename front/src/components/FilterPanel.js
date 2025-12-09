@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSpring, animated } from '@react-spring/web';
 
 function FilterPanel({ options, filters, setFilters }) {
   const handleMultiChange = (e, key) => {
@@ -9,20 +8,15 @@ function FilterPanel({ options, filters, setFilters }) {
     setFilters({ ...filters, [key]: selected });
   };
 
-  const springProps = useSpring({
-    from: { opacity: 0, transform: 'translateX(-10px)' },
-    to: { opacity: 1, transform: 'translateX(0px)' },
-    config: { tension: 280, friction: 20 },
-  });
-
   return (
-    <animated.div className="filter-panel" style={springProps}>
+    <div className="filter-panel panel">
       <h3>Filters</h3>
 
-      <div className="filter-group">
+      <div>
         <label>Customer Region</label>
         <select
           multiple
+          size={6}
           value={filters.customerRegions}
           onChange={(e) => handleMultiChange(e, 'customerRegions')}
         >
@@ -34,10 +28,11 @@ function FilterPanel({ options, filters, setFilters }) {
         </select>
       </div>
 
-      <div className="filter-group">
+      <div>
         <label>Gender</label>
         <select
           multiple
+          size={3}
           value={filters.genders}
           onChange={(e) => handleMultiChange(e, 'genders')}
         >
@@ -49,10 +44,11 @@ function FilterPanel({ options, filters, setFilters }) {
         </select>
       </div>
 
-      <div className="filter-group">
+      <div>
         <label>Product Category</label>
         <select
           multiple
+          size={4}
           value={filters.productCategories}
           onChange={(e) => handleMultiChange(e, 'productCategories')}
         >
@@ -64,10 +60,11 @@ function FilterPanel({ options, filters, setFilters }) {
         </select>
       </div>
 
-      <div className="filter-group">
+      <div>
         <label>Tags</label>
         <select
           multiple
+          size={6}
           value={filters.tags}
           onChange={(e) => handleMultiChange(e, 'tags')}
         >
@@ -79,10 +76,11 @@ function FilterPanel({ options, filters, setFilters }) {
         </select>
       </div>
 
-      <div className="filter-group">
+      <div>
         <label>Payment Method</label>
         <select
           multiple
+          size={5}
           value={filters.paymentMethods}
           onChange={(e) => handleMultiChange(e, 'paymentMethods')}
         >
@@ -94,7 +92,7 @@ function FilterPanel({ options, filters, setFilters }) {
         </select>
       </div>
 
-      <div className="filter-group">
+      <div>
         <label>Age Range</label>
         <input
           type="number"
@@ -120,7 +118,7 @@ function FilterPanel({ options, filters, setFilters }) {
         />
       </div>
 
-      <div className="filter-group">
+      <div>
         <label>Date Range</label>
         <input
           type="date"
@@ -133,7 +131,7 @@ function FilterPanel({ options, filters, setFilters }) {
           onChange={(e) => setFilters({ ...filters, dateEnd: e.target.value })}
         />
       </div>
-    </animated.div>
+    </div>
   );
 }
 
