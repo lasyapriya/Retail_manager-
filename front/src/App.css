@@ -1,1 +1,55 @@
+.app {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
 
+.main {
+  display: flex;
+}
+
+.filter-panel {
+  width: 250px;
+  padding: 10px;
+  border-right: 1px solid #ccc;
+}
+
+.filter-panel div {
+  margin-bottom: 15px;
+}
+
+.filter-panel select,
+.filter-panel input {
+  width: 100%;
+  margin-top: 5px;
+}
+
+.content {
+  flex: 1;
+  padding: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.pagination {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination button {
+  margin: 0 10px;
+}
