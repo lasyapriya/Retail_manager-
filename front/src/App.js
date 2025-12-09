@@ -1,6 +1,6 @@
+// front/src/App.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useSpring, animated } from '@react-spring/web';
 import './App.css';
 import SearchBar from './components/SearchBar';
 import FilterPanel from './components/FilterPanel';
@@ -30,7 +30,6 @@ function App() {
   });
   const [sort, setSort] = useState('');
 
-  // load filter options
   useEffect(() => {
     axios
       .get(`${API}/options`)
@@ -38,7 +37,6 @@ function App() {
       .catch((err) => console.error('Error loading options', err));
   }, []);
 
-  // load table data
   useEffect(() => {
     axios
       .get(`${API}/transactions`, {
@@ -57,15 +55,8 @@ function App() {
       .catch((err) => console.error('Error loading transactions', err));
   }, [search, filters, sort, page]);
 
-  const springProps = useSpring({
-    from: { opacity: 0, transform: 'translateY(12px)' },
-    to: { opacity: 1, transform: 'translateY(0)' },
-    reset: true,
-    config: { tension: 250, friction: 22 },
-  });
-
   return (
-    <animated.div className="app" style={springProps}>
+    <div className="app">
       <header className="app-header">
         <h1 className="app-title">TruEstate Retail Sales</h1>
         <p className="app-subtitle">
@@ -76,12 +67,12 @@ function App() {
       <SearchBar value={search} onChange={setSearch} />
 
       <main className="layout">
-        {/* Left – wide, relaxed filters */}
+        {/* Left – filters pinned to left edge */}
         <aside className="sidebar">
           <FilterPanel options={options} filters={filters} setFilters={setFilters} />
         </aside>
 
-        {/* Right – main workspace */}
+        {/* Right – table + controls */}
         <section className="workspace">
           <div className="toolbar-row">
             <SortingDropdown value={sort} onChange={setSort} />
@@ -96,7 +87,7 @@ function App() {
           </div>
         </section>
       </main>
-    </animated.div>
+    </div>
   );
 }
 
