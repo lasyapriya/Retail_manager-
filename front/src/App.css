@@ -261,12 +261,12 @@ body::after {
 
 .transaction-table {
   width: 100%;
-  min-width: 1700px; /* more room for columns */
+  min-width: 2200px;          /* even wider so headers/values don't cut */
   border-collapse: collapse;
-  table-layout: fixed;
+  table-layout: auto;         /* let columns size to content */
   border-radius: 18px;
-  border: 3px solid #020617;          /* deep outer black border */
-  box-shadow: 0 0 0 2px #fbbf24;       /* golden outline ring */
+  border: 3px solid #020617;
+  box-shadow: 0 0 0 2px #fbbf24;
   overflow: hidden;
 }
 
