@@ -198,4 +198,242 @@ body::after {
 .filter-panel input {
   width: 100%;
   background: #020617;
-  border-radiu
+  border-radius: 14px;
+  border: 1px solid rgba(51, 65, 85, 0.95);
+  padding: 8px 12px;
+  font-size: 0.84rem;
+  color: #e5e7eb;
+  outline: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    transform 0.1s ease;
+}
+
+.filter-panel select:hover,
+.filter-panel input:hover {
+  border-color: rgba(96, 165, 250, 0.9);
+  background: #020617;
+}
+
+.filter-panel select:focus,
+.filter-panel input:focus {
+  border-color: #fbbf24;
+  box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.7);
+  transform: translateY(-1px);
+}
+
+/* ===== Toolbar (sorting) ===== */
+
+.toolbar-row {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sorting-dropdown {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #020617, #0b1120);
+  border: 1px solid rgba(148, 163, 255, 0.7);
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.9);
+  font-size: 0.88rem;
+}
+
+.sorting-dropdown label {
+  color: rgba(226, 232, 240, 0.95);
+}
+
+.sorting-dropdown select {
+  border-radius: 999px;
+  border: none;
+  outline: none;
+  padding: 7px 14px;
+  font-size: 0.84rem;
+  background: #020617;
+  color: #e5e7eb;
+}
+
+/* ===== Transaction table – big, wide, golden grid ===== */
+
+.transaction-table {
+  width: 100%;
+  min-width: 1700px; /* more room for columns */
+  border-collapse: collapse;
+  table-layout: fixed;
+  border-radius: 18px;
+  border: 3px solid #020617;          /* deep outer black border */
+  box-shadow: 0 0 0 2px #fbbf24;       /* golden outline ring */
+  overflow: hidden;
+}
+
+/* header cells */
+
+.transaction-table thead th,
+.transaction-table tbody td {
+  border-right: 1px solid rgba(251, 191, 36, 0.85); /* golden inner grid */
+  border-bottom: 1px solid rgba(30, 64, 175, 0.9);
+}
+
+.transaction-table thead th:last-child,
+.transaction-table tbody td:last-child {
+  border-right: none;
+}
+
+.transaction-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: linear-gradient(120deg, #1d2432, #4338ca, #ec4899);
+  background-size: 200% 200%;
+  animation: headerGradient 14s ease-in-out infinite;
+  color: #fefce8;
+  font-weight: 600;
+  font-size: 0.86rem;
+  padding: 10px 12px;
+  white-space: nowrap;
+}
+
+/* body cells – bigger font, full content (no clipping) */
+
+.transaction-table tbody td {
+  font-size: 0.9rem;                 /* larger font */
+  padding: 9px 12px;
+  color: #e5e7eb;
+  background-color: #020617;
+  white-space: normal;               /* allow wrapping */
+  word-break: break-word;            /* break long text */
+}
+
+/* zebra + hover */
+
+.transaction-table tbody tr:nth-child(even) td {
+  background-color: #020617f0;
+}
+
+.transaction-table tbody tr:hover td {
+  background-color: #0b1120;
+}
+
+/* ===== Empty state ===== */
+
+.table-empty {
+  padding: 22px 12px;
+  font-size: 0.94rem;
+  color: rgba(156, 163, 175, 0.95);
+}
+
+/* ===== Pagination ===== */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: rgba(229, 231, 235, 0.96);
+}
+
+.pagination button {
+  border-radius: 999px;
+  border: none;
+  padding: 9px 22px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 550;
+  background: radial-gradient(circle at top left, #4ade80, #16a34a);
+  color: #022c22;
+  box-shadow: 0 14px 32px rgba(22, 163, 74, 0.85);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    filter 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 40px rgba(22, 163, 74, 0.95);
+  filter: brightness(1.03);
+}
+
+.pagination button:disabled {
+  opacity: 0.45;
+  cursor: default;
+  box-shadow: none;
+}
+
+/* ===== Scrollbars ===== */
+
+.panel-table::-webkit-scrollbar,
+.filter-panel::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.panel-table::-webkit-scrollbar-track,
+.filter-panel::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+.panel-table::-webkit-scrollbar-thumb,
+.filter-panel::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.9);
+  border-radius: 999px;
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 1120px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+  }
+
+  .transaction-table {
+    min-width: 1200px;
+  }
+}
+
+/* ===== Keyframes ===== */
+
+@keyframes pastelFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes bubbleDrift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(30px, -20px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes headerGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
