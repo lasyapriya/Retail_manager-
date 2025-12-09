@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './styles/App.css';
+import './App.css';
 import SearchBar from './components/SearchBar';
 import FilterPanel from './components/FilterPanel';
 import SortingDropdown from './components/SortingDropdown';
