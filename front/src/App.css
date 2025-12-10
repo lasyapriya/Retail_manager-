@@ -173,11 +173,15 @@ body::after {
   flex-direction: column;
   gap: 14px;
 }
+.filter-panel select option {
+  text-align: center;
+}
 
 .filter-panel h3 {
   margin: 0 0 4px;
-  font-size: 0.86rem;
+  font-size: 1.1rem;
   text-transform: uppercase;
+  text-align:center;
   letter-spacing: 0.22em;
   color: rgba(148, 163, 184, 0.95);
 }
@@ -189,9 +193,10 @@ body::after {
 }
 
 .filter-panel label {
-  font-size: 0.82rem;
+  font-size: 1.5rem;
   font-weight: 500;
   color: #e5e7eb;
+  text-align:center;
 }
 
 .filter-panel select,
@@ -200,8 +205,9 @@ body::after {
   background: #020617;
   border-radius: 14px;
   border: 1px solid rgba(51, 65, 85, 0.95);
-  padding: 8px 12px;
-  font-size: 0.84rem;
+  padding: 10px 14px;
+  font-size: 1.5rem;
+  text-align:center;
   color: #e5e7eb;
   outline: none;
   transition:
